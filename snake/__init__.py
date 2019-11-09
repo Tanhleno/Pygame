@@ -6,7 +6,7 @@ import sys
 
 
 def main():
-    pg.init()
+    #pg.init()
     unity = pg.Surface((20, 20))
     unity.fill((0, 0, 0))
     screen = pg.display.set_mode((700, 500))
