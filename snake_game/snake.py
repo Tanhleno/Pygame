@@ -10,27 +10,35 @@ class Snake:
                                 field.unity.get_height()))
         self.skin.fill(color)
         self.color = color
+        self.skeleton = []
         head = field.get_random_not_occupied_point()
-        field.occupy(head, self)
-        field.draw_element(head, self.skin)
-        self.skeleton = [head]
-        self.stopped = True
-        self.dead = False
+        self._increase(head)
         self.direction = pg.Vector2(0, 0)
+        self.dead = False
 
-    def change_direction(self, word):
-        if word == 'top':
-            self.direction.update(0, -1)
-        elif word == 'right':
-            self.direction.update(1, 0)
-        elif word == 'down':
-            self.direction.update(0, 1)
-        elif word == 'left':
-            self.direction.update(-1, 0)
-        else:
-            raise ValueError("changeDirection must be set with:" +
-                             " 'top', 'right', 'left' or 'down'")
-        self.stopped = False
+    def restart(self):
+        while len(self.skeleton):
+            self._destroy()
+        head = self.field.get_random_not_occupied_point()
+        self._increase(head)
+        self.direction.update(0, 0)
+        self.dead = False
+
+    def set_direction(self, x, y):
+        if len(self.skeleton) == 1 or self.direction.rotate(180) != pg.Vector2(x, y):
+            self.direction.update(x, y)
+
+    def set_direction_top(self):
+        self.set_direction(0, -1)
+
+    def set_direction_down(self):
+        self.set_direction(0, 1)
+
+    def set_direction_left(self):
+        self.set_direction(-1, 0)
+
+    def set_direction_right(self):
+        self.set_direction(1, 0)
 
     def _increase(self, point):
         self.field.occupy(point, self)
@@ -59,12 +67,12 @@ class Snake:
     
     def update(self):
         if self.dead:
-            self._destroy()
+            self.restart()
         else:
             self.move()
     
     def move(self):
-        if not self.stopped:
+        if self.direction.x or self.direction.y:
             while True:
                 next_point = self._get_next_point()
                 owner = self.field.get_owner(next_point)
