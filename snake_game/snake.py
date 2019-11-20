@@ -1,6 +1,6 @@
 import pygame as pg
-from .field import Point
-from .food import Food
+from field import Point
+from food import Food
 
 
 class Snake:

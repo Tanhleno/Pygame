@@ -1,7 +1,7 @@
 import pygame as pg
-from .field import Field
-from .snake import Snake
-from .food import Food
+from field import Field
+from snake import Snake
+from food import Food
 import sys
 
 
