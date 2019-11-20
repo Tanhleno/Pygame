@@ -1,4 +1,4 @@
-from .field import Field
+from field import Field
 import pygame as pg
 
 
@@ -15,7 +15,8 @@ class Food:
         self.field.draw_element(self.position, self.skin)
 
     def next_position(self):
+        temp = self.field.get_random_not_occupied_point()
         self.field.not_occupy(self.position)
-        self.position = self.field.get_random_not_occupied_point()
+        self.position = temp
         self.field.occupy(self.position, self)
         self.field.draw_element(self.position, self.skin)
