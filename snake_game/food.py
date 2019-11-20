@@ -1,4 +1,4 @@
-from field import Field
+from .field import Field
 import pygame as pg
 
 
