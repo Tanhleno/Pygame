@@ -1,0 +1,21 @@
+# editorconfig.org
+
+# top-most EditorConfig file
+root = true
+
+# Unix-style newlines with a newline ending every file
+# Remove any whitespace characters preceding newline characters
+[*]
+end_of_line = lf
+insert_final_newline = true
+trim_trailing_whitespace = true
+
+# Set default charset and 4 space indentation
+[*.py]
+charset = utf-8
+indent_style = space
+indent_size = 4
+
+# Keep any whitespace characters preceding newline characters
+[*.md]
+trim_trailing_whitespace = false
