@@ -22,7 +22,7 @@ git clone https://github.com/tanhleno/my-snake-game && cd my-snake-game
 Then, in the project directory, install all necessary dependencies using:
 
 ```
-python3 -m pip install requirements.txt
+python3 -m pip install -r requirements.txt
 ```
 
 Note: I recommend you use a
